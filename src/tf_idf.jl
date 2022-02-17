@@ -1,5 +1,26 @@
 module TfIdf_Transformer
 
+    """
+        TfIdf_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
+            X - is a terms count matrix, X(i,j) must be >= 0
+            returns named tuple as a model
+
+        TfIdf_Transformer.transform(m, X)
+            X - is a terms counts matrix, X(i,j) must be >= 0,
+            m - fitted transformer, returned by TfIdf_Transformer.fit
+            returns transformed data
+
+        Example:
+        ========
+        X = [0 1 1 1 0 0 1 0 1
+             0 2 0 1 0 1 1 0 1
+             1 0 0 1 1 0 1 1 1
+             0 1 1 1 0 0 1 0 1]
+        tfidf = TfIdf_Transformer.fit(X)
+        X_transformed = TfIdf_Transformer.transform(tfidf, X)
+
+    """
+
     function fit(X::Matrix{Int64}; smooth::Bool=true, norm=:l2, use_idf::Bool=true)
         if use_idf
             if smooth
