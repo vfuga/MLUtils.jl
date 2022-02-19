@@ -1,4 +1,4 @@
-"""
+@doc """
 f1\\_score(; y\\_proba::Vector{Float64}, y\\_true::Vector{Int64})
 
 May be used to look for an optimal threshols to maximize F1-score

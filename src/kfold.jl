@@ -1,6 +1,6 @@
 using Random
 
-"""
+@doc """
 StratifiedKfold(y::Vector{Int64}, k::Int64) for *binary classification*
 
 **Parameters:**

@@ -1,4 +1,4 @@
-"""
+@doc """
 # TfIdf\\_Transformer
 
 TfIdf\\_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)

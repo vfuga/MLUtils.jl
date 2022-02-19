@@ -1,6 +1,6 @@
 using Lazy
 
-"""
+@doc """
 # Receiver Operator Characteristic & Area Under the Curve
 
 ## MLUtils.roc\\_auc(; y\\_true::Vector{Int}, y\\_proba::Vector{Float64})
