@@ -1,26 +1,29 @@
 """
-# TfIdf\\_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
+# TfIdf\\_Transformer
 
 TfIdf\\_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
+
 Parameters:
-  - X: is a terms count matrix (2D), where X(i,j) >= 0  
-  - norm: could be Symbol :l1 or :l2(default)  
-  - use_idf: do not use inverse document frequency 
-  - smooth: adds 1 to tf(t) and df(d) befor calculation
-returns named tuple as a model   
+  - X::Matrix{Float64} - is a terms count matrix (2D), where X(i,j) >= 0  
+  - norm::Symbol - could be either :l1 or :l2(default)  
+  - use_idf::Bool - do not use inverse document frequency, default: true 
+  - smooth::Bool - adds 1 to tf(t) and df(d) befor calculation, default: true
+**returns** named tuple as a model   
 
 TfIdf_Transformer.transform(m, X)
-- X - is a terms counts matrix, X(i,j) must be >= 0,
-- m - fitted transformer, returned by TfIdf_Transformer.fit
-returns transformed data
+
+Parameters:
+  - X::Matrix{Float64} - is a terms counts matrix, X(i,j) must be >= 0,
+  - m::NamedTuple - fitted transformer, returned by TfIdf_Transformer.fit
+**returns** transformed data
 
 Example:
-========
 ````julia
 X = [0 1 1 1 0 0 1 0 1
      0 2 0 1 0 1 1 0 1
      1 0 0 1 1 0 1 1 1
      0 1 1 1 0 0 1 0 1]
+
 tfidf = TfIdf_Transformer.fit(X)
 X_transformed = TfIdf_Transformer.transform(tfidf, X)
 ````
