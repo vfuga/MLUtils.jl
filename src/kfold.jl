@@ -1,7 +1,14 @@
+using Random
+
+"""
+StratifiedKfold(y::Vector{Int64}, k::Int64) for *binary classification*
+
+**Parameters:**
+- y::Vector{Int}, yᵢ ∈ {0, 1}
+- k::Int, number of folds
+
+"""
 function StratifiedKfold(y::Vector{Int64}, k::Int64)
-    """
-        
-    """
     all_ix = collect(1:length(y))
 
     positives_ix = Random.shuffle([i for (i, v) in enumerate(y) if v == 1])

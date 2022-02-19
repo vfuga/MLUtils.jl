@@ -30,6 +30,7 @@ function roc_auc(; y_true::Vector{Int}, y_proba::Vector{Float64})
         error("Only one class in y_true. At least two classes are expected.")
     end
     data = @>> (zip(y_true, y_proba) |> collect)  sort(; by= x -> x[2])
+
     # @>> data foreach(println)
     # TPR = TP / (TP + FN)
     # FPR = FP / (FP + TN)
