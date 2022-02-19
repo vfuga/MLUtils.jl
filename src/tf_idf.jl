@@ -1,12 +1,13 @@
 """
-TfIdf_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
+# TfIdf\\_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
 
+TfIdf\\_Transformer.fit(X; smooth=true, norm=:l2, use_idf=true)
 Parameters:
- - X: is a terms count matrix, X(i,j) must be >= 0
- - norm: could be Symbol :l1 or :l2
- - use_idf: do not use idf
- - smooth: adds one to tf(t) and df(d)
-returns named tuple as a model
+  - X: is a terms count matrix (2D), where X(i,j) >= 0  
+  - norm: could be Symbol :l1 or :l2(default)  
+  - use_idf: do not use inverse document frequency 
+  - smooth: adds 1 to tf(t) and df(d) befor calculation
+returns named tuple as a model   
 
 TfIdf_Transformer.transform(m, X)
 - X - is a terms counts matrix, X(i,j) must be >= 0,
@@ -15,7 +16,7 @@ returns transformed data
 
 Example:
 ========
-````
+````julia
 X = [0 1 1 1 0 0 1 0 1
      0 2 0 1 0 1 1 0 1
      1 0 0 1 1 0 1 1 1

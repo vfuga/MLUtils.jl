@@ -1,5 +1,30 @@
 using Lazy
 
+"""
+# Receiver Operator Characteristic & Area Under the Curve
+
+## MLUtils.roc\\_auc(; y\\_true::Vector{Int}, y\\_proba::Vector{Float64})
+
+Parameters:
+-----------
+  - y\\_true: labels, y_true[i] ∈ {0, 1}
+  - y\\_proba: probability of positive ∈ [0.0, 1.0]
+returns named tuple with four fields: 
+
+````
+    (auc=auc::Float64,  # area under the curve
+     tpr=tpr::Vector{Float64},   # true positive rate
+     fpr=fpr::Vector{Float64},   # false positive rate
+     thresh=Vector{Float64})     # thresholds
+````
+    
+Example:
+--------
+````
+    using MLUtils
+    auc = MLUtils.roc_auc(; y_true=y, y_proba=y_predicted).auc
+````
+"""
 function roc_auc(; y_true::Vector{Int}, y_proba::Vector{Float64})
     if y_true |> Lazy.frequencies |> length == 1
         error("Only one class in y_true. At least two classes are expected.")
