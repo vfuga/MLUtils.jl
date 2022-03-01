@@ -29,7 +29,7 @@ module KNN
         elseif (metric == :cos) & (max_distance === nothing)
             denominators = sum(X .* X; dims=2)[:, 1]
             for i in 1:size(X, 1)
-                r = 1.0 .- sum(X .* X[i, :]'; dims=2)[:, 1] ./ sqrt.(denominators .*  (X[i, :]' * X[i, :]))
+                r = 1.0 - (sum(X .* X[i, :]'; dims=2)[:, 1] ./ sqrt.(denominators .*  (X[i, :]' * X[i, :])) + 1.0) / 2.0
                 ix = sortperm(r)[1:max_k+1]
                 ix = [j for j in ix if (j != i)]
                 neighbors[i] = (index=i, dist=r[ix], neighbors=ix)
@@ -63,12 +63,10 @@ module KNN
 
 end
 
-using .KNN
-
-X = rand(10000, 20)
-@time neighbors = Main.KNN.knn(X; max_k = 5)
-@time neighbors = Main.KNN.knn(X; max_k = 5, max_distance=5.0, metric=:euclidean)
-@time neighbors = Main.KNN.knn(X; max_k = 5, metric= :manhattan)
-@time neighbors = Main.KNN.knn(X; max_k = 5, metric= :manhattan, max_distance=.4)
-@time neighbors = Main.KNN.knn(X; max_k = 5, metric= :cos)
-@time neighbors = Main.KNN.knn(X; max_k = 5, metric= :cos, max_distance=.2)
+# X = rand(10000, 2000)
+# @time neighbors = Main.KNN.knn(X; max_k = 5)
+# @time neighbors = Main.KNN.knn(X; max_k = 5, max_distance=5.0, metric=:euclidean)
+# @time neighbors = Main.KNN.knn(X; max_k = 5, metric= :manhattan)
+# @time neighbors = Main.KNN.knn(X; max_k = 5, metric= :cityblock, max_distance=.4)
+# @time neighbors = Main.KNN.knn(X; max_k = 5, metric= :cos)
+# @time neighbors = Main.KNN.knn(X; max_k = 5, metric= :cos, max_distance=.2)
